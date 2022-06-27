@@ -38,7 +38,7 @@ Through the API, information is received with the possibility of filtering and s
 <li>run "docker-compose run django python manage.py migrate" for apply migrations</li>
 <li>run "docker-compose run django python manage.py createsuperuser" for create admin user</li>
 <li>run "docker-compose up runserver" for run the server</li>
-<li>run "docker-compose up tests" for running REST API tests</li>
+<li>run "docker-compose up tests" for run REST API tests</li>
 </ul>
 </a>
 </body>
