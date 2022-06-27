@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  django:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/code
+
+  runserver:
+    build: .
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+
+  tests:
+    build: .
+    command: python manage.py test Doctors.tests
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'django_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    volumes:
+        - .:/code
